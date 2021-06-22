@@ -1,4 +1,3 @@
-  
 // On importe le models du password
 const passwordSchema = require('../models/password');
 
