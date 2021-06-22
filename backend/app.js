@@ -1,12 +1,13 @@
-require('dotenv').config()
+const dotenv = require('dotenv').config();
 const express = require('express');
+const mysql = require('mysql2');
+
 const app = express();
-const mysql = require('mysql');
 
 const db = mysql.createConnection({
-    host: "process.env.DB_HOST",
-    user: "process.env.DB_USER",
-    password: "process.env.DB_PASS"
+    host: "localhost",
+    user: "root",
+    password: "Veget@51mysql"
   });
 
 db.connect(function(err) {
@@ -20,6 +21,13 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
   });
+
+
+app.use(express.json());
+
+//app.use('/images', express.static(path.join(__dirname, 'images')));
+//app.use('/api/post', postRoutes);
+//app.use('/api/user', userRoutes);
 
 module.exports = app;
 
