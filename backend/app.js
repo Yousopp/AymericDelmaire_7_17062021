@@ -5,29 +5,27 @@ const helmet = require("helmet");
 const path = require('path');
 const userRoutes = require('./routes/user.js');
 const postRoutes = require('./routes/post.js');
-
 const app = express();
 
 app.use(helmet()); // API plus sécurisée pour réspecter l'OWASP
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Veget@51mysql"
-  });
+  host: "localhost", // dotenv !!
+  user: "root",
+  password: "Veget@51mysql"
+});
 
-db.connect(function(err) {
-    if (err) throw err;
-    console.log("Connecté à la base de données MySQL!");
-  });
+db.connect(function (err) {
+  if (err) throw err;
+  console.log("Connecté à la base de données MySQL!");
+});
 
 app.use((req, res, next) => { //Résolution erreur CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
-  });
-
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
 
 app.use(express.json());
 
