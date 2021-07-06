@@ -1,0 +1,23 @@
+.UserInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.UserInfo-name {
+  margin-left: 20px;
+  font-weight: 900;
+}
+
+.Avatar {
+  border-radius: 5px;
+}
+
+.Comment-text,
+.Comment-date {
+  margin-left: 84px;
+}
+
+.Comment-date {
+  margin-top: 15px;
+}

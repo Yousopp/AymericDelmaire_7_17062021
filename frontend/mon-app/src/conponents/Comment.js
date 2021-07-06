@@ -1,3 +1,5 @@
+import './Comment.css';
+
 function formatDate(date) {
   return date.toLocaleDateString();
 }
