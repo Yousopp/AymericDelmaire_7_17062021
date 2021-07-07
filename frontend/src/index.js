@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Spinner from './conponents/Spinner';
+import Spinner from './components/Spinner';
 
 const App = React.lazy(() => import( './App'));
 

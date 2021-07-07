@@ -11,15 +11,15 @@ function Navigation() {
               <p>Accueil</p>
             </Link>
 
-            <Link className="App-connexion-link" to='/Loading'>
+            <Link className="App-connexion-link" to='/loading'>
               <p>Se connecter</p>
             </Link>
 
-            <Link className="App-connexion-link" to='/Signup'>
+            <Link className="App-connexion-link" to='/signup'>
               <p>S'inscrire</p>
             </Link>
           </div>
-          <Link className="App-connexion-button" to="/Post">
+          <Link className="App-connexion-button" to="/post">
             <div>
                 <p className="App-groupotter">Groupotter</p>
             </div>
