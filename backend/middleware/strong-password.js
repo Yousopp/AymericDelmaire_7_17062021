@@ -1,5 +1,5 @@
 // On importe le models du password
-const passwordSchema = require('../models/password');
+const passwordSchema = require('./password');
 
 // On vérifie que le mot de passe respecte le schéma et on renvoie un message si c'est incorrect.
 module.exports = (req, res, next) => {

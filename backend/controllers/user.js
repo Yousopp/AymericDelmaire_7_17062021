@@ -1,11 +1,10 @@
-const User = require('../models/user');
+const model = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const validator = require("email-validator");
 
 // Utilisation du plugin email-validator pour validé l'email de l'utilisateur pendant l'inscription.
 exports.signupUser = (req, res, next) => {
-  console.log(req.body);
   const isValidateEmail = validator.validate(req.body.email)
   if(!isValidateEmail) {
     res.writeHead(400, 'Email incorrect !"}', {
@@ -15,10 +14,13 @@ exports.signupUser = (req, res, next) => {
   } else {
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
-        const user = new User({
+        const user = new model.User({
           name: req.body.name,
           email: req.body.email,
           password: hash,
+          isAdmin: false,
+          createdAt : Date.now(),
+          updatedAt: Date.now()
         });
         user.save()
           .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))

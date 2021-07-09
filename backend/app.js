@@ -1,4 +1,6 @@
 require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const mysql = require('mysql2');
 const helmet = require("helmet");
@@ -12,7 +14,8 @@ app.use(helmet()); // API plus sécurisée pour réspecter l'OWASP
 const db = mysql.createConnection({
   host: "localhost", // dotenv !!
   user: "root",
-  password: "Veget@51mysql"
+  password: "Veget@51mysql",
+  dialect: process.env.dialect
 });
 
 db.connect(function (err) {

@@ -9,7 +9,6 @@ function Signup() {
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
         const data = {name: nom, email: email, password: pass}
-        console.log(data)
         axios.post("http://localhost:3000/api/user/signup", data, {
             method: 'POST',
             body: data,
