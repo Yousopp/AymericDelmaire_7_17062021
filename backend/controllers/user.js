@@ -5,6 +5,7 @@ const validator = require("email-validator");
 
 // Utilisation du plugin email-validator pour validé l'email de l'utilisateur pendant l'inscription.
 exports.signupUser = (req, res, next) => {
+  console.log(req.body);
   const isValidateEmail = validator.validate(req.body.email)
   if(!isValidateEmail) {
     res.writeHead(400, 'Email incorrect !"}', {
@@ -18,7 +19,6 @@ exports.signupUser = (req, res, next) => {
           name: req.body.name,
           email: req.body.email,
           password: hash,
-          avatar: req.body.avatar
         });
         user.save()
           .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))

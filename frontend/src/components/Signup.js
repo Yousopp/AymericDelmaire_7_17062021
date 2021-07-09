@@ -5,16 +5,14 @@ function Signup() {
     const [nom, setNom] = useState("")
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
-    const [avatar, setAvatar] = useState("")
 
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
-        const data = {name: nom, email: email, password: pass, avatar: avatar}
+        const data = {name: nom, email: email, password: pass}
         console.log(data)
-        console.log(e)
         axios.post("http://localhost:3000/api/user/signup", data, {
             method: 'POST',
-            body: JSON.stringify({ data }),
+            body: data,
             headers: { 'Content-Type': 'application/json' },
           })
         .then(res => console.log(res))
@@ -35,10 +33,6 @@ function Signup() {
                 <div>
                     <label htmlFor="password">Mot de passe : </label>
                     <input type="text" id="password" value={pass} onChange={e => setPass(e.target.value)}/>
-                </div>
-                <div>
-                    <label htmlFor="avatar">Avatar : </label>
-                    <input type="text" id="avatar" value={avatar} onChange={e => setAvatar(e.target.value)}/>
                 </div>
                 <button>S'inscrire</button>
             </form>
