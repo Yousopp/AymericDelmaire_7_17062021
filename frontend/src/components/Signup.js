@@ -1,29 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 function Signup() {
+    const [nom, setNom] = useState("")
+    const [email, setEmail] = useState("")
+    const [pass, setPass] = useState("")
+    const [avatar, setAvatar] = useState("")
+
+    const undleSubmit = e => {
+        e.preventDefault() // evite le rechargement
+        const data = {name: nom, email: email, password: pass, avatar: avatar}
+        console.log(data)
+        console.log(e)
+        axios.post("http://localhost:3000/api/user/signup", data, {
+            method: 'POST',
+            body: JSON.stringify({ data }),
+            headers: { 'Content-Type': 'application/json' },
+          })
+        .then(res => console.log(res))
+    }
 
     return(
         <div className="App-body">
-            <div className="App-signup">
+            <form onSubmit={e => undleSubmit(e)} className="App-signup">
                 <h1>Inscription</h1>
                 <div>
-                    <label for="name">Nom : </label>
-                    <input type="text" id="name"/>
+                    <label htmlFor="name">Nom : </label>
+                    <input type="text" id="name" value={nom} onChange={e => setNom(e.target.value)}/>
                 </div>
                 <div>
-                    <label for="email">Email : </label>
-                    <input type="text" id="email"/>
+                    <label htmlFor="email">Email : </label>
+                    <input type="text" id="email" value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div>
-                    <label for="password">Mot de passe : </label>
-                    <input type="text" id="password"/>
+                    <label htmlFor="password">Mot de passe : </label>
+                    <input type="text" id="password" value={pass} onChange={e => setPass(e.target.value)}/>
                 </div>
                 <div>
-                    <label for="avatar">Avatar : </label>
-                    <input type="text" id="avatar"/>
+                    <label htmlFor="avatar">Avatar : </label>
+                    <input type="text" id="avatar" value={avatar} onChange={e => setAvatar(e.target.value)}/>
                 </div>
                 <button>S'inscrire</button>
-            </div>
+            </form>
         </div>
     );
 }

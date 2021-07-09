@@ -7,12 +7,16 @@ function Post() {
             <div className="App-post">
                 <h1>Poster un message :</h1>
                 <div>
-                    <label for="comment">Commentaire : </label>
+                    <label htmlFor="title">Titre : </label>
+                    <input type="text" id="title"/>
+                </div>
+                <div>
+                    <label htmlFor="comment">Commentaire : </label>
                     <input type="text" id="comment"/>
                 </div>
                 <div>
-                    <label for="photo">Photo : </label>
-                    <input type="text" id="photo"/>
+                    <label htmlFor="image">Image : </label>
+                    <input type="text" id="image"/>
                 </div>
                 <button>Créer le post !</button>
             </div>
