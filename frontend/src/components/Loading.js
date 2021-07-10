@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function Loading() {
-    const [nom, setNom] = useState("")
+    const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
 
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
-        const data = {name: nom, password: pass}
-        console.log(data)
-        console.log(e)
-        axios.post("http://localhost:3000/api/user/login", data)
+        const data = {email: email, password: pass}
+        axios.post("http://localhost:3000/api/user/login", data, {
+            method: 'POST',
+            body: data,
+            headers: { 'Content-Type': 'application/json' },
+          })
         .then(res => console.log(res))
     }
 
@@ -19,8 +21,8 @@ function Loading() {
             <form onSubmit={e => undleSubmit(e)} className="App-loading">
                 <h1>Connection</h1>
                 <div>
-                    <label htmlFor="name">Nom : </label>
-                    <input type="text" id="name" name="name" value={nom} onChange={e => setNom(e.target.value)}/>
+                    <label htmlFor="email">Email : </label>
+                    <input type="text" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div>
                     <label htmlFor="password">Mot de passe : </label>

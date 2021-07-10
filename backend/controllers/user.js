@@ -1,4 +1,4 @@
-const model = require('../models');
+const {User} = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const validator = require("email-validator");
@@ -30,11 +30,9 @@ exports.signupUser = (req, res, next) => {
     }
 };
 
-// Utilisation de mongoose-field-encryption pour encrypter l'email de l'utilisateur.
+
 exports.loginUser = (req, res, next) => {
-  const userToSearchWith = new User({ email: req.body.email })
-  userToSearchWith.encryptFieldsSync();
-  User.findOne({ email: userToSearchWith.email })
+  User.findOne({ email: User.email })
     .then(user => {
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
