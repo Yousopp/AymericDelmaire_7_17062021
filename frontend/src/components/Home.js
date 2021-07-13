@@ -2,21 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 
 function Home() {
-    console.log(localStorage.getItem("userId"))
     const [listPost, setListPost] = useState([]);
     useEffect ( () => {
         axios.get("http://localhost:3000/api/post/", {
-            method: 'GET',
-            body: {userId: localStorage.getItem("userId")},
             headers: { 
                 'Content-Type': 'application/json',
                 accessToken: localStorage.getItem("accessToken")
             },
-          })
+        })
         .then(res => {
             setListPost(res.data)
         })
-    })
+    }, []) // Evite la répétition
 
     return (
         <div className="App-body">
@@ -29,9 +26,7 @@ function Home() {
                     <div className="body">
                         {value.content}
                     </div>
-                    <div className="attachment">
-                        {value.attachment}
-                    </div>
+                    <img src={value.attachment} alt="imagePost" className="attachment"/>
                 </div>
 
             }) }
