@@ -11,7 +11,7 @@ function Navigation() {
               <p>Accueil</p>
             </Link>
 
-            <Link className="App-connexion-link" to='/loading'>
+            <Link className="App-connexion-link" to='/login'>
               <p>Se connecter</p>
             </Link>
 

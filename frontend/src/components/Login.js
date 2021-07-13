@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+//import LoginControl from "./LoginControl";
 import axios from "axios";
 
-function Loading() {
+function Login() {
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
 
@@ -13,7 +14,10 @@ function Loading() {
             body: data,
             headers: { 'Content-Type': 'application/json' },
           })
-        .then(res => console.log(res))
+        .then(res => {
+            localStorage.setItem("accessToken", res.data.token)
+            localStorage.setItem("userId", res.data.userId)
+        })
     }
 
     return(
@@ -34,4 +38,4 @@ function Loading() {
     );
 }
 
-export default Loading;
+export default Login;

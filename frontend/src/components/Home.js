@@ -1,42 +1,43 @@
-import React from "react";
-import Comment from "./Comment"
-
-const comment = {
-    date: new Date(),
-    text: 'I hope you enjoy learning React!',
-    author: {
-      name: 'Hello Kitty',
-      avatarUrl: 'https://placekitten.com/g/64/64',
-    },
-  };
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
 function Home() {
+    console.log(localStorage.getItem("userId"))
+    const [listPost, setListPost] = useState([]);
+    useEffect ( () => {
+        axios.get("http://localhost:3000/api/post/", {
+            method: 'GET',
+            body: {userId: localStorage.getItem("userId")},
+            headers: { 
+                'Content-Type': 'application/json',
+                accessToken: localStorage.getItem("accessToken")
+            },
+          })
+        .then(res => {
+            setListPost(res.data)
+        })
+    })
 
-    return(
+    return (
         <div className="App-body">
-            <div className="App-comment">
-                <Comment
-                date={comment.date}
-                text={comment.text}
-                author={comment.author}
-                />
-            </div>
-            <div className="App-comment">
-                <Comment
-                date={comment.date}
-                text={comment.text}
-                author={comment.author}
-                />
-            </div>
-            <div className="App-comment">
-                <Comment
-                date={comment.date}
-                text={comment.text}
-                author={comment.author}
-                />
-            </div>
-        </div>
-    );
+            { listPost.map( (value, key) => {
+
+                return <div key={key} className="App-comment">
+                    <div className="title">
+                        {value.title}
+                    </div>
+                    <div className="body">
+                        {value.content}
+                    </div>
+                    <div className="attachment">
+                        {value.attachment}
+                    </div>
+                </div>
+
+            }) }
+       </div>
+    )
+        
 }
 
 export default Home;

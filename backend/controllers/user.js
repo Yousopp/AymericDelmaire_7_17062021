@@ -1,3 +1,4 @@
+const model = require('../models');
 const {User} = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -42,10 +43,11 @@ exports.loginUser = (req, res, next) => {
           if (!valid) {
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
           }
+          console.log(user)
           res.status(200).json({
-            userId: user._id,
+            userId: user.id,
             token: jwt.sign(
-              { userId: user._id },
+              { userId: user.id },
               "RANDOM_SECRET_TOKEN", // Changer le token et le mettre en process.env
               { expiresIn: '24h' }
             )

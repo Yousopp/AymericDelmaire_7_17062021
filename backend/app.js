@@ -8,6 +8,7 @@ const path = require('path');
 const userRoutes = require('./routes/user.js');
 const postRoutes = require('./routes/post.js');
 const app = express();
+const cors = require("cors");
 
 app.use(helmet()); // API plus sécurisée pour réspecter l'OWASP
 
@@ -31,6 +32,7 @@ app.use((req, res, next) => { //Résolution erreur CORS
 });
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/post', postRoutes);

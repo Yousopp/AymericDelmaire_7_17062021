@@ -1,6 +1,6 @@
 import logo from './icon-left-font-monochrome-white.png';
 import React from 'react';
-import Loading from './components/Loading';
+import Login from './components/Login';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Signup from './components/Signup';
@@ -17,7 +17,7 @@ function App() {
         <Navigation />
 
         <Route path='/' exact component={Home}/>
-        <Route path='/loading' exact component={Loading}/>
+        <Route path='/login' exact component={Login}/>
         <Route path='/signup' exact component={Signup}/>
         <Route path='/post' exact component={Post}/>
 
