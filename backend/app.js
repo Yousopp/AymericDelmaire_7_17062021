@@ -34,7 +34,7 @@ app.use((req, res, next) => { //Résolution erreur CORS
 app.use(express.json());
 app.use(cors());
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/image', express.static(path.join(__dirname, 'image')));
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 

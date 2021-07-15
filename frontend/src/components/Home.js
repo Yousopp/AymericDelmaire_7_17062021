@@ -26,7 +26,10 @@ function Home() {
                     <div className="body">
                         {value.content}
                     </div>
-                    <img src={value.attachment} alt="imagePost" className="attachment"/>
+                    <img src={value.attachment} alt="" width="250"/>
+                    <div>
+                        {JSON.stringify(value)}
+                    </div>
                 </div>
 
             }) }

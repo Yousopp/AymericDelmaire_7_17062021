@@ -6,7 +6,7 @@ function Post() {
     let history = useHistory();
     const [title, setTitle] = useState("")
     const [comment, setComment] = useState("")
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState()
 
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
@@ -39,7 +39,7 @@ function Post() {
                 </div>
                 <div>
                     <label htmlFor="image">Image : </label>
-                    <input type="text" id="image" name="image" value={image} onChange={e => setImage(e.target.value)}/>
+                    <input type="file" id="image" name="image" value={image} onChange={e => setImage(e.target.files[0].filename)}/>
                 </div>
                 <button>Créer le post !</button>
             </form>

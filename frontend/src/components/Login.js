@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-//import LoginControl from "./LoginControl";
 import axios from "axios";
+import {useHistory} from 'react-router-dom';
 
 function Login() {
+    let history = useHistory();
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
 
@@ -17,6 +18,8 @@ function Login() {
         .then(res => {
             localStorage.setItem("accessToken", res.data.token)
             localStorage.setItem("userId", res.data.userId)
+            localStorage.setItem("userName", res.data.name)
+            history.push('/')
         })
     }
 
@@ -30,7 +33,7 @@ function Login() {
                 </div>
                 <div>
                     <label htmlFor="password">Mot de passe : </label>
-                    <input type="text" id="password" name="password" value={pass} onChange={e => setPass(e.target.value)}/>
+                    <input type="password" id="password" name="password" value={pass} onChange={e => setPass(e.target.value)}/>
                 </div>
                 <button>Se connecter</button>
             </form>

@@ -31,7 +31,7 @@ function Signup() {
                 </div>
                 <div>
                     <label htmlFor="password">Mot de passe : </label>
-                    <input type="text" id="password" value={pass} onChange={e => setPass(e.target.value)}/>
+                    <input type="password" id="password" value={pass} onChange={e => setPass(e.target.value)}/>
                 </div>
                 <button>S'inscrire</button>
             </form>

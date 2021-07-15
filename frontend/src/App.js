@@ -7,12 +7,18 @@ import Signup from './components/Signup';
 import Post from './components/Post';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory({forceRefresh:true});
+
 
 function App() {
+
+  //const isLoggedIn = localStorage.getItem("accessToken") != null; // Si différent = true
   return (
     <div className="App">
       <img src={logo} className="App-logo" alt="logo" />
-      <Router>
+      <Router history={history}>
 
         <Navigation />
 

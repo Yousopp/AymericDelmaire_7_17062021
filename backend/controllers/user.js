@@ -33,7 +33,8 @@ exports.signupUser = (req, res, next) => {
 
 
 exports.loginUser = (req, res, next) => {
-  User.findOne({ email: User.email })
+  console.log(req.body.email)
+  User.findOne({ where: { email: req.body.email }})
     .then(user => {
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
@@ -46,6 +47,7 @@ exports.loginUser = (req, res, next) => {
           console.log(user)
           res.status(200).json({
             userId: user.id,
+            name: user.name,
             token: jwt.sign(
               { userId: user.id },
               "RANDOM_SECRET_TOKEN", // Changer le token et le mettre en process.env

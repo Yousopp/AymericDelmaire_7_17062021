@@ -3,11 +3,12 @@ const {Post} = require('../models');
 const fs = require('fs');
 
 exports.createPost = (req, res, next) => {
+  console.log(req.body)
   const post = new model.Post({
     UserId: req.body.userId,
     title: req.body.title,
     content: req.body.comment,
-    attachment: req.body.image,
+    attachment: `${req.protocol}://${req.get('host')}/images/${req.body.image}`,
     createdAt : Date.now(),
     updatedAt: Date.now()
   });
