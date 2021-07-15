@@ -5,21 +5,23 @@ function UserGreeting(props) {
   return(
     <div className="App-connexion">
       <div>
-        <h2>Bonjour</h2>
+        
+        <Link className="pseudo" to="/">
+          <h2>Bonjour,<br></br>
+          {localStorage.getItem("userName")}</h2>
+        </Link>
 
-        <Link to="/">
-          <p>{localStorage.getItem("userName")}</p>
-          </Link>
-        <button onClick="">Déconnexion</button>
         <Link className="App-connexion-link" to='/'>
           <p>Accueil</p>
         </Link>
+
+        <button onClick="Cliqué !">Déconnexion</button>
       </div>
+
       <Link className="App-connexion-button" to="/post">
-        <div>
-            <p className="App-groupotter">Groupotter</p>
-        </div>
+        <p className="App-groupotter">Groupotter</p>
       </Link>
+
     </div>
   )
 }
