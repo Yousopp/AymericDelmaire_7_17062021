@@ -1,21 +1,19 @@
 import React, { useState} from "react";
 import { Link } from 'react-router-dom';
+const Swal = require('sweetalert2')
 
 function UserGreeting(props) {
   return(
     <div className="App-connexion">
       <div>
-        
-        <Link className="pseudo" to="/">
-          <h2>Bonjour,<br></br>
-          {localStorage.getItem("userName")}</h2>
-        </Link>
+        <h2>Bonjour,<br></br>
+        {localStorage.getItem("userName")}</h2>
 
         <Link className="App-connexion-link" to='/'>
           <p>Accueil</p>
         </Link>
 
-        <button onClick="Cliqué !">Déconnexion</button>
+        <button className="button-disconnect" onClick={() => Disconnect() }>Déconnexion</button>
       </div>
 
       <Link className="App-connexion-button" to="/post">
@@ -24,6 +22,26 @@ function UserGreeting(props) {
 
     </div>
   )
+}
+
+function Disconnect() {
+  Swal.fire({
+    title: 'Êtes-vous sûr(e) ?',
+    text: "Une fois déconnecté(e), vous ne pourrez plus créer de post.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Me déconnecter'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deconnecté(e)'
+      )
+      localStorage.clear()
+      window.location.reload()
+    }
+  })
 }
 
 function GuestGreeting(props) {
@@ -55,7 +73,7 @@ function GuestGreeting(props) {
 
 function Navigation(props) {
   const isLoggedIn = localStorage.getItem('accessToken');
-  let [userLogged, setUserLogged] = useState(isLoggedIn);
+  let [userLogged] = useState(isLoggedIn);
   if (userLogged) {
     return <UserGreeting />;
   }

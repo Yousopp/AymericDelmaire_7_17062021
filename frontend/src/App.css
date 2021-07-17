@@ -30,6 +30,10 @@
   color: white;
 }
 
+.button-disconnect {
+  background-color: none;
+}
+
 .App-connexion-link {
   text-decoration: none;
   color: white;

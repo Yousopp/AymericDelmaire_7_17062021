@@ -50,7 +50,7 @@ exports.loginUser = (req, res, next) => {
             name: user.name,
             token: jwt.sign(
               { userId: user.id },
-              "RANDOM_SECRET_TOKEN", // Changer le token et le mettre en process.env
+              process.env.JSONWEBTOKEN, // Changer le token et le mettre en process.env
               { expiresIn: '24h' }
             )
           });

@@ -20,6 +20,7 @@ function Login() {
             localStorage.setItem("userId", res.data.userId)
             localStorage.setItem("userName", res.data.name)
             history.push('/')
+            window.location.reload()
         })
     }
 

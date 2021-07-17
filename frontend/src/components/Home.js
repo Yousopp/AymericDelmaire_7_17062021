@@ -17,18 +17,18 @@ function Home() {
 
     return (
         <div className="App-body">
-            { listPost.map( (value, key) => {
+            { listPost.map( (post, key) => {
 
                 return <div key={key} className="App-comment">
                     <div className="title">
-                        {value.title}
+                        {post.title}
                     </div>
                     <div className="body">
-                        {value.content}
+                        {post.content}
                     </div>
-                    <img src={value.attachment} alt="" width="250"/>
+                    <img src={post.attachment} alt="" width="250"/>
                     <div>
-                        {JSON.stringify(value)}
+                        {JSON.stringify(post)}
                     </div>
                 </div>
 

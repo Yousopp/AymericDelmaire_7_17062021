@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {useHistory} from 'react-router-dom';
 
 function Signup() {
+    let history = useHistory();
     const [nom, setNom] = useState("")
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
@@ -14,7 +16,10 @@ function Signup() {
             body: data,
             headers: { 'Content-Type': 'application/json' },
           })
-        .then(res => console.log(res))
+        .then(res => { 
+            console.log(res)
+            history.push('/login')
+        })
     }
 
     return(

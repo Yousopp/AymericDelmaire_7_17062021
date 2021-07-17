@@ -21,7 +21,6 @@ function Post() {
           })
         .then(res => {
             history.push('/');
-            console.log(res)
         })
     }
 
