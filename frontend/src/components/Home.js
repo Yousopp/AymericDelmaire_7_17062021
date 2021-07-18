@@ -26,9 +26,11 @@ function Home() {
                     <div className="body">
                         {post.content}
                     </div>
-                    <img src={post.attachment} alt="" width="250"/>
-                    <div>
-                        {JSON.stringify(post)}
+                    <br></br>
+                    <img className="image" src={post.attachment} alt=""/>
+                    <br></br>
+                    <div className="date">
+                        <p><em>Post créé le {post.createdAt}</em></p>
                     </div>
                 </div>
 

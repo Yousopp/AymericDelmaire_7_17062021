@@ -8,7 +8,7 @@ exports.createPost = (req, res, next) => {
     UserId: req.body.userId,
     title: req.body.title,
     content: req.body.comment,
-    attachment: `${req.protocol}://${req.get('host')}/images/${req.body.image}`,
+    attachment: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
     createdAt : Date.now(),
     updatedAt: Date.now()
   });
@@ -32,7 +32,12 @@ exports.deletePost = (req, res, next) => { // Le user supprime un post
 };
 
 exports.getAllPost = (req, res, next) => { // Récupération de tous les posts
-  Post.findAll().then(
+  Post.findAll({
+    order: [[
+      "createdAt", "DESC"
+  ]]
+  })
+  .then(
     (posts) => {
       res.status(200).json(posts);
     }

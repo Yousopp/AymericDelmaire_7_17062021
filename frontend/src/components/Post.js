@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {useHistory} from 'react-router-dom';
-
+ 
 function Post() {
     let history = useHistory();
     const [title, setTitle] = useState("")
     const [comment, setComment] = useState("")
     const [image, setImage] = useState()
-
+ 
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
-        const data = {title: title, comment: comment, image: image, userId: localStorage.getItem("userId")}
+ 
+        const data = new FormData();
+        data.append('image', image);
+        data.append('title', title);
+        data.append('comment', comment);
+        data.append('userId', localStorage.getItem("userId"));
+ 
         axios.post("http://localhost:3000/api/post/", data, {
             method: 'POST',
             body: data,
-            headers: { 
-                'Content-Type': 'application/json',
+            headers: {
+                "Content-Type": "multipart/form-data",
                 accessToken: localStorage.getItem("accessToken")
             },
           })
@@ -23,7 +29,7 @@ function Post() {
             history.push('/');
         })
     }
-
+ 
     return(
         <div className="App-body">
             <form onSubmit={e => undleSubmit(e)} className="App-post">
@@ -42,7 +48,7 @@ function Post() {
                     <div>
                         <label htmlFor="image">Image : </label>
                         <br></br>
-                        <input className="input-form" type="file" id="image" name="image" value={image} onChange={e => setImage(e.target.files[0].filename)}/>
+                        <input className="input-form" type="file" id="image" name="image" onChange={e => setImage(e.target.files[0])}/>
                     </div>
                 </div>
                 <button className="connexion-button">Créer le post !</button>
@@ -50,5 +56,5 @@ function Post() {
         </div>
     );
 }
-
+ 
 export default Post;

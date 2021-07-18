@@ -89,6 +89,12 @@
   word-wrap: break-word;
 }
 
+.image {
+  width: 100%;
+  border-radius: 25px;
+  border: solid 1px rgb(90, 90, 90);
+}
+
 .App-signup,
 .App-loading,
 .App-groupotter,
