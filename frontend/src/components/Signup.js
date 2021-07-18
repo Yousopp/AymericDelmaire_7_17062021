@@ -26,19 +26,24 @@ function Signup() {
         <div className="App-body">
             <form onSubmit={e => undleSubmit(e)} className="App-signup">
                 <h1>Inscription</h1>
-                <div>
-                    <label htmlFor="name">Nom : </label>
-                    <input type="text" id="name" value={nom} onChange={e => setNom(e.target.value)}/>
+                <div className="App-loading-form">
+                    <div>
+                        <label htmlFor="name">Nom : </label>
+                        <br></br>
+                        <input className="input-form" placeholder="Inscrivez votre pseudo" size="30" type="text" id="name" value={nom} onChange={e => setNom(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email : </label>
+                        <br></br>
+                        <input className="input-form" placeholder="Inscrivez votre email" size="30" type="text" id="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label htmlFor="password">Mot de passe : </label>
+                        <br></br>
+                        <input className="input-form" placeholder="Inscrivez votre Mot de passe" size="30" type="password" id="password" value={pass} onChange={e => setPass(e.target.value)}/>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="email">Email : </label>
-                    <input type="text" id="email" value={email} onChange={e => setEmail(e.target.value)}/>
-                </div>
-                <div>
-                    <label htmlFor="password">Mot de passe : </label>
-                    <input type="password" id="password" value={pass} onChange={e => setPass(e.target.value)}/>
-                </div>
-                <button>S'inscrire</button>
+                <button className="connexion-button">S'inscrire</button>
             </form>
         </div>
     );

@@ -12,7 +12,7 @@
   grid-row: 1;
   width: 200px;
   margin: 35px auto;
-  padding: 10px;
+  padding: 15px;
 }
 
 .App-connexion {
@@ -31,7 +31,18 @@
 }
 
 .button-disconnect {
-  background-color: none;
+  background-color: tomato;
+  color: white;
+  border: solid 2px red;
+  border-radius: 50px;
+  padding: 5px 10px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.4s ease-out;
+}
+
+.button-disconnect:hover {
+  background-color: red;
 }
 
 .App-connexion-link {
@@ -50,9 +61,12 @@
 }
 
 .App-groupotter {
-  background-color: #17bf63;
+  background-color: green;
+  border: solid 2px lightgreen;
   color: white;
   border-radius: 50px;
+  font-size: 15px;
+  font-weight: 900;
   padding: 16px;
   margin-top: 35px;
   transition: 0.4s;
@@ -82,6 +96,43 @@
   text-align: center;
 }
 
+.App-loading-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.input-form {
+  padding: 5px;
+  margin: 10px;
+}
+
+.input-form-comment {
+  padding: 5px;
+  margin: 10px;
+  height: 200px;
+  width: 250px;
+}
+
+.connexion-button {
+  border: solid 2px lightgreen;
+  background-color: green;
+  color: white;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 16px;
+  margin-top: 20px;
+  transition: 0.4s;
+}
+
+.connexion-button:hover {
+  background-color: #15ac59;
+  padding: 16px 20px;
+}
+
 @media (max-width: 800px) {
   .App {
     grid-template-columns: repeat(4, 1fr);
@@ -106,7 +157,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .App {
     grid-template-columns: repeat(3, 1fr);
   }

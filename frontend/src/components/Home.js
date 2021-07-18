@@ -21,7 +21,7 @@ function Home() {
 
                 return <div key={key} className="App-comment">
                     <div className="title">
-                        {post.title}
+                        <h3>{post.title}</h3>
                     </div>
                     <div className="body">
                         {post.content}

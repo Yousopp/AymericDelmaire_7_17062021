@@ -28,15 +28,19 @@ function Login() {
         <div className="App-body">
             <form onSubmit={e => undleSubmit(e)} className="App-loading">
                 <h1>Connection</h1>
-                <div>
-                    <label htmlFor="email">Email : </label>
-                    <input type="text" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                <div className="App-loading-form">
+                    <div>
+                        <label htmlFor="email">Email : </label>
+                        <br></br>
+                        <input className="input-form" placeholder="Inscrivez votre email" size="30" type="text" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
+                    </div>
+                    <div>
+                        <label htmlFor="password">Mot de passe : </label>
+                        <br></br>
+                        <input className="input-form" placeholder="Inscrivez votre Mot de passe" size="30" type="password" id="password" name="password" value={pass} onChange={e => setPass(e.target.value)}/>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="password">Mot de passe : </label>
-                    <input type="password" id="password" name="password" value={pass} onChange={e => setPass(e.target.value)}/>
-                </div>
-                <button>Se connecter</button>
+                <button className="connexion-button">Se connecter</button>
             </form>
         </div>
     );
