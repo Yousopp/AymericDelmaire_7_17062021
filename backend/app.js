@@ -13,9 +13,9 @@ const cors = require("cors");
 app.use(helmet()); // API plus sécurisée pour réspecter l'OWASP
 
 const db = mysql.createConnection({
-  host: "localhost", // dotenv !!
-  user: "root",
-  password: "Veget@51mysql",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
   dialect: process.env.dialect
 });
 
