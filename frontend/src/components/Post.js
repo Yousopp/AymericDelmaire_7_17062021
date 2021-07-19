@@ -7,6 +7,7 @@ function Post() {
     const [title, setTitle] = useState("")
     const [comment, setComment] = useState("")
     const [image, setImage] = useState()
+    const [error, setError] = useState("")
  
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
@@ -27,6 +28,9 @@ function Post() {
           })
         .then(res => {
             history.push('/');
+        })
+        .catch( (error) => {
+            setError(error.response.data.error)
         })
     }
  
@@ -51,6 +55,7 @@ function Post() {
                         <input className="input-form" type="file" id="image" name="image" onChange={e => setImage(e.target.files[0])}/>
                     </div>
                 </div>
+                <div className="error">{error}</div>
                 <button className="connexion-button">Créer le post !</button>
             </form>
         </div>

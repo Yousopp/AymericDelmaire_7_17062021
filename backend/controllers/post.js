@@ -3,7 +3,6 @@ const {Post} = require('../models');
 const fs = require('fs');
 
 exports.createPost = (req, res, next) => {
-  console.log(req.body)
   const post = new model.Post({
     UserId: req.body.userId,
     title: req.body.title,
@@ -13,8 +12,8 @@ exports.createPost = (req, res, next) => {
     updatedAt: Date.now()
   });
   post.save()
-  .then(() => res.status(201).json({ message: 'Votre post à bien été créé.' }))
-  .catch((error) => {res.status(400).json({error});});
+  .then(() => res.status(201).json({ message: 'Votre post à bien été créé' }))
+  .catch(() => res.status(400).json({error : "Veuillez vous connecter pour créer un post"}))
 };
 
 exports.modifyPost = (req, res, next) => { // Le user modifi un post
@@ -35,7 +34,7 @@ exports.getAllPost = (req, res, next) => { // Récupération de tous les posts
   Post.findAll({
     order: [[
       "createdAt", "DESC"
-  ]]
+    ]]
   })
   .then(
     (posts) => {

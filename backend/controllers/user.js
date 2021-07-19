@@ -8,10 +8,8 @@ const validator = require("email-validator");
 exports.signupUser = (req, res, next) => {
   const isValidateEmail = validator.validate(req.body.email)
   if(!isValidateEmail) {
-    res.writeHead(400, 'Email incorrect !"}', {
-      'content-type': 'application/json'
-    });
-    res.end('Le format de l\'Email est incorrect.');
+    res.setHeader('Content-Type', 'application/json');
+    res.status(400).json({ error: "Veuillez entrer un email valide" });
   } else {
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
@@ -25,7 +23,7 @@ exports.signupUser = (req, res, next) => {
         });
         user.save()
           .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-          .catch(error => res.status(400).json({ error }));
+          .catch(error => res.status(400).json({ error: error }));
       })
       .catch(error => res.status(500).json({ error }));
     }
@@ -33,24 +31,22 @@ exports.signupUser = (req, res, next) => {
 
 
 exports.loginUser = (req, res, next) => {
-  console.log(req.body.email)
   User.findOne({ where: { email: req.body.email }})
     .then(user => {
       if (!user) {
-        return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+        return res.status(401).json({ error: "L'email est incorrect" });
       }
       bcrypt.compare(req.body.password, user.password)
         .then(valid => {
           if (!valid) {
-            return res.status(401).json({ error: 'Mot de passe incorrect !' });
+            return res.status(401).json({ error: 'Le mot de passe est incorrect' });
           }
-          console.log(user)
           res.status(200).json({
             userId: user.id,
             name: user.name,
             token: jwt.sign(
               { userId: user.id },
-              process.env.JSONWEBTOKEN, // Changer le token et le mettre en process.env
+              process.env.JSONWEBTOKEN,
               { expiresIn: '24h' }
             )
           });

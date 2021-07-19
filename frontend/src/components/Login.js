@@ -6,6 +6,7 @@ function Login() {
     let history = useHistory();
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
+    const [error, setError] = useState("")
 
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
@@ -22,12 +23,19 @@ function Login() {
             history.push('/')
             window.location.reload()
         })
+        .catch( (error) => {
+            if (error.response.data.error.errors) {
+                setError("L'email ou le mot de passe est incorrect.")
+            } else {
+                setError(error.response.data.error)
+            }
+        })
     }
 
     return(
         <div className="App-body">
             <form onSubmit={e => undleSubmit(e)} className="App-loading">
-                <h1>Connection</h1>
+                <h1>Connexion</h1>
                 <div className="App-loading-form">
                     <div>
                         <label htmlFor="email">Email : </label>
@@ -40,6 +48,7 @@ function Login() {
                         <input className="input-form" placeholder="Inscrivez votre Mot de passe" size="30" type="password" id="password" name="password" value={pass} onChange={e => setPass(e.target.value)}/>
                     </div>
                 </div>
+                <div className="error">{error}</div>
                 <button className="connexion-button">Se connecter</button>
             </form>
         </div>

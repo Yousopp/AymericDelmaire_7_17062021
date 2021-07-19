@@ -7,6 +7,7 @@ function Signup() {
     const [nom, setNom] = useState("")
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
+    const [error, setError] = useState("")
 
     const undleSubmit = e => {
         e.preventDefault() // evite le rechargement
@@ -17,8 +18,10 @@ function Signup() {
             headers: { 'Content-Type': 'application/json' },
           })
         .then(res => { 
-            console.log(res)
             history.push('/login')
+        })
+        .catch( (error) => {
+            setError(error.response.data.error)
         })
     }
 
@@ -43,6 +46,7 @@ function Signup() {
                         <input className="input-form" placeholder="Inscrivez votre Mot de passe" size="30" type="password" id="password" value={pass} onChange={e => setPass(e.target.value)}/>
                     </div>
                 </div>
+                <div className="error">{error}</div>
                 <button className="connexion-button">S'inscrire</button>
             </form>
         </div>
